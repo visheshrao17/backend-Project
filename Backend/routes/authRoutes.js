@@ -1,14 +1,8 @@
 const express = require('express');
-const { signupUser, loginUser, googleLogin } = require('../controllers/authController');
 const router = express.Router();
+const { register, login } = require('../controllers/authController');
 
-// POST /auth/signup - Sign up a new user
-router.post('/signup', signupUser);
-
-// POST /auth/login - Log in and receive a JWT
-router.post('/login', loginUser);
-
-// POST /auth/google-login - Google login
-// router.post('/google-login', googleLogin);
+router.post('/register', register);
+router.post('/login', login);
 
 module.exports = router;

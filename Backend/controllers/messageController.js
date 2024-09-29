@@ -1,33 +1,16 @@
 const Message = require('../models/Message');
 
-// Send a Message
 exports.sendMessage = async (req, res) => {
-    const { content, receiverId } = req.body;
-    try {
-        const newMessage = new Message({
-            sender: req.user.userId,
-            receiver: receiverId,
-            content,
-        });
-        await newMessage.save();
-        res.status(201).json(newMessage);
-    } catch (error) {
-        res.status(500).json({ message: 'Server error' });
-    }
-};
-
-// Get Messages between two users
-exports.getMessages = async (req, res) => {
-    const { receiverId } = req.params;
-    try {
-        const messages = await Message.find({
-            $or: [
-                { sender: req.user.userId, receiver: receiverId },
-                { sender: receiverId, receiver: req.user.userId },
-            ],
-        }).sort({ createdAt: 1 });
-        res.status(200).json(messages);
-    } catch (error) {
-        res.status(500).json({ message: 'Server error' });
-    }
+  try {
+    const newMessage = new Message({
+      chat_id: req.params.chatId,
+      sender_id: req.user.id,
+      message_text: req.body.message_text
+    });
+    const message = await newMessage.save();
+    res.status(201).json(message);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 };
