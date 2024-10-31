@@ -25,23 +25,6 @@ Budget and timeline filters
 Proposal submission and tracking
 
 
-Communication Tools
-
-In-platform messaging
-Video call integration
-File sharing capabilities
-Real-time notification system
-
-
-Payment Management
-
-Secure escrow services
-Multiple payment gateway support
-Transparent fee structure
-Milestone-based payment releases
-
-
-
 Technology Stack
 
 Node.js with Express
@@ -74,17 +57,13 @@ Create .env files in both the backend and frontend directories
 Add the following environment variables:
 
 Backend .env:
+
+
 CopyMONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
-STRIPE_SECRET_KEY=your_stripe_secret_key
-Frontend .env:
-CopyREACT_APP_API_URL=http://localhost:5000
-REACT_APP_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
-Running the Application
 bashCopy# Start backend server
 cd backend
 npm run start
-
 
 API Endpoints
 
@@ -92,6 +71,7 @@ POST/api/auth/registerUser Registration{ username, email, password, role }  for 
 POST/api/auth/loginUser Login{ email, password }   for user login 
 GET/api/users/profileGet Current User Profile-User profile details
 POST/api/auth/reset-passwordPassword Reset{ token, newPassword }  Success message
+
 
 
 
